@@ -82,18 +82,18 @@
 			<Properties>
 				<BinaryString name="AttributesSerialize"></BinaryString>
 				<CoordinateFrame name="CFrame">
-					<X>1.79634249</X>
-					<Y>20.5579376</Y>
-					<Z>-19.2619133</Z>
-					<R00>0.719334245</R00>
-					<R01>-0.359429002</R01>
-					<R02>0.594448566</R02>
-					<R10>-2.98023224e-08</R10>
-					<R11>0.855735183</R11>
-					<R12>0.517414093</R12>
-					<R20>-0.69466418</R20>
-					<R21>-0.372193694</R21>
-					<R22>0.615559578</R22>
+					<X>-29.9389648</X>
+					<Y>11.3674259</Y>
+					<Z>27.5265903</Z>
+					<R00>0.207906127</R00>
+					<R01>0.290861845</R01>
+					<R02>-0.93390286</R02>
+					<R10>-0</R10>
+					<R11>0.954765677</R11>
+					<R12>0.297359496</R12>
+					<R20>0.978148818</R20>
+					<R21>-0.0618228614</R21>
+					<R22>0.198501617</R22>
 				</CoordinateFrame>
 				<Ref name="CameraSubject">null</Ref>
 				<token name="CameraType">0</token>
@@ -102,9 +102,9 @@
 				<float name="FieldOfView">70</float>
 				<token name="FieldOfViewMode">0</token>
 				<CoordinateFrame name="Focus">
-					<X>0.607445359</X>
-					<Y>19.5231094</Y>
-					<Z>-20.4930325</Z>
+					<X>-28.0711594</X>
+					<Y>10.772707</Y>
+					<Z>27.1295872</Z>
 					<R00>1</R00>
 					<R01>0</R01>
 					<R02>0</R02>
@@ -159,7 +159,7 @@
 				<bool name="CastShadow">true</bool>
 				<string name="CollisionGroup">Default</string>
 				<int name="CollisionGroupId">0</int>
-				<Color3uint8 name="Color3uint8">4284636770</Color3uint8>
+				<Color3uint8 name="Color3uint8">4284177243</Color3uint8>
 				<PhysicalProperties name="CustomPhysicalProperties">
 					<CustomPhysics>false</CustomPhysics>
 				</PhysicalProperties>
@@ -176,7 +176,7 @@
 				<token name="LeftSurfaceInput">0</token>
 				<bool name="Locked">true</bool>
 				<bool name="Massless">false</bool>
-				<token name="Material">256</token>
+				<token name="Material">272</token>
 				<string name="MaterialVariantSerialized"></string>
 				<string name="Name">Baseplate</string>
 				<CoordinateFrame name="PivotOffset">
@@ -225,6 +225,31 @@
 					<Z>512</Z>
 				</Vector3>
 			</Properties>
+			<Item class="Texture" referent="RBX181D27CC1AEF430FB59A4E3F91769C06">
+				<Properties>
+					<BinaryString name="AttributesSerialize"></BinaryString>
+					<SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
+					<Color3 name="Color3">
+						<R>0</R>
+						<G>0</G>
+						<B>0</B>
+					</Color3>
+					<bool name="DefinesCapabilities">false</bool>
+					<token name="Face">1</token>
+					<UniqueId name="HistoryId">00000000000000000000000000000000</UniqueId>
+					<string name="Name">Texture</string>
+					<float name="OffsetStudsU">0</float>
+					<float name="OffsetStudsV">0</float>
+					<int64 name="SourceAssetId">-1</int64>
+					<float name="StudsPerTileU">8</float>
+					<float name="StudsPerTileV">8</float>
+					<BinaryString name="Tags"></BinaryString>
+					<Content name="Texture"><url>rbxassetid://6372755229</url></Content>
+					<float name="Transparency">0.800000012</float>
+					<UniqueId name="UniqueId">19f91422bf1468f8083457cd0000648d</UniqueId>
+					<int name="ZIndex">1</int>
+				</Properties>
+			</Item>
 		</Item>
 		<Item class="Terrain" referent="RBXACF12D04311D4282A512464B24F929CD">
 			<Properties>
@@ -1168,7 +1193,7 @@ end]]></ProtectedString>
 				<string name="Name">Server</string>
 				<token name="RunContext">0</token>
 				<string name="ScriptGuid">{37048B0A-3C50-4D3E-A37E-E85C5C275173}</string>
-				<ProtectedString name="Source">print(&quot;Hello world, from server!!!!!&quot;)</ProtectedString>
+				<ProtectedString name="Source">print(&quot;Hello world, from server!&quot;)</ProtectedString>
 				<int64 name="SourceAssetId">-1</int64>
 				<BinaryString name="Tags"></BinaryString>
 				<UniqueId name="UniqueId">19f91422bf1468f8083457cd00000386</UniqueId>
@@ -1217,12 +1242,12 @@ end]]></ProtectedString>
 	<Item class="Lighting" referent="0">
 		<Properties>
 			<Color3 name="Ambient">
-				<R>0</R>
-				<G>0</G>
-				<B>0</B>
+				<R>0.274509817</R>
+				<G>0.274509817</G>
+				<B>0.274509817</B>
 			</Color3>
 			<BinaryString name="AttributesSerialize">AQAAACAAAABSQlhfT3JpZ2luYWxUZWNobm9sb2d5T25GaWxlTG9hZAQBAAAA</BinaryString>
-			<float name="Brightness">2</float>
+			<float name="Brightness">3</float>
 			<SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
 			<Color3 name="ColorShift_Bottom">
 				<R>0</R>
@@ -1235,8 +1260,8 @@ end]]></ProtectedString>
 				<B>0</B>
 			</Color3>
 			<bool name="DefinesCapabilities">false</bool>
-			<float name="EnvironmentDiffuseScale">0</float>
-			<float name="EnvironmentSpecularScale">0</float>
+			<float name="EnvironmentDiffuseScale">1</float>
+			<float name="EnvironmentSpecularScale">1</float>
 			<float name="ExposureCompensation">0</float>
 			<Color3 name="FogColor">
 				<R>0.75</R>
@@ -1251,19 +1276,122 @@ end]]></ProtectedString>
 			<token name="LightingStyle">0</token>
 			<string name="Name">Lighting</string>
 			<Color3 name="OutdoorAmbient">
-				<R>0.5</R>
-				<G>0.5</G>
-				<B>0.5</B>
+				<R>0.274509817</R>
+				<G>0.274509817</G>
+				<B>0.274509817</B>
 			</Color3>
 			<bool name="Outlines">false</bool>
 			<bool name="PrioritizeLightingQuality">true</bool>
 			<float name="ShadowSoftness">0.5</float>
 			<int64 name="SourceAssetId">-1</int64>
 			<BinaryString name="Tags"></BinaryString>
-			<token name="Technology">1</token>
+			<token name="Technology">3</token>
 			<string name="TimeOfDay">14:00:00</string>
 			<UniqueId name="UniqueId">19f91422bf1468f8083457cd00000383</UniqueId>
 		</Properties>
+		<Item class="Atmosphere" referent="RBX3644C63A0B49453CBEB02A292827F893">
+			<Properties>
+				<BinaryString name="AttributesSerialize"></BinaryString>
+				<SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
+				<Color3 name="Color">
+					<R>0.78039217</R>
+					<G>0.78039217</G>
+					<B>0.78039217</B>
+				</Color3>
+				<Color3 name="Decay">
+					<R>0.41568628</R>
+					<G>0.43921569</G>
+					<B>0.490196079</B>
+				</Color3>
+				<bool name="DefinesCapabilities">false</bool>
+				<float name="Density">0.300000012</float>
+				<float name="Glare">0</float>
+				<float name="Haze">0</float>
+				<UniqueId name="HistoryId">00000000000000000000000000000000</UniqueId>
+				<string name="Name">Atmosphere</string>
+				<float name="Offset">0.25</float>
+				<int64 name="SourceAssetId">-1</int64>
+				<BinaryString name="Tags"></BinaryString>
+				<UniqueId name="UniqueId">19f91422bf1468f8083457cd0000648e</UniqueId>
+			</Properties>
+		</Item>
+		<Item class="Sky" referent="RBX632CC3AC4C6B4C29AE84E0CE56D14BFC">
+			<Properties>
+				<BinaryString name="AttributesSerialize"></BinaryString>
+				<SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
+				<bool name="CelestialBodiesShown">true</bool>
+				<bool name="DefinesCapabilities">false</bool>
+				<UniqueId name="HistoryId">00000000000000000000000000000000</UniqueId>
+				<float name="MoonAngularSize">11</float>
+				<Content name="MoonTextureId"><url>rbxassetid://6444320592</url></Content>
+				<string name="Name">Sky</string>
+				<Content name="SkyboxBk"><url>rbxassetid://6444884337</url></Content>
+				<Content name="SkyboxDn"><url>rbxassetid://6444884785</url></Content>
+				<Content name="SkyboxFt"><url>rbxassetid://6444884337</url></Content>
+				<Content name="SkyboxLf"><url>rbxassetid://6444884337</url></Content>
+				<Vector3 name="SkyboxOrientation">
+					<X>0</X>
+					<Y>0</Y>
+					<Z>0</Z>
+				</Vector3>
+				<Content name="SkyboxRt"><url>rbxassetid://6444884337</url></Content>
+				<Content name="SkyboxUp"><url>rbxassetid://6412503613</url></Content>
+				<int64 name="SourceAssetId">332039975</int64>
+				<int name="StarCount">3000</int>
+				<float name="SunAngularSize">11</float>
+				<Content name="SunTextureId"><url>rbxassetid://6196665106</url></Content>
+				<BinaryString name="Tags"></BinaryString>
+				<UniqueId name="UniqueId">19f91422bf1468f8083457cd0000648f</UniqueId>
+			</Properties>
+		</Item>
+		<Item class="BloomEffect" referent="RBXEEC96579419143D6B3C539913194BC5C">
+			<Properties>
+				<BinaryString name="AttributesSerialize"></BinaryString>
+				<SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
+				<bool name="DefinesCapabilities">false</bool>
+				<bool name="Enabled">true</bool>
+				<UniqueId name="HistoryId">00000000000000000000000000000000</UniqueId>
+				<float name="Intensity">1</float>
+				<string name="Name">Bloom</string>
+				<float name="Size">24</float>
+				<int64 name="SourceAssetId">-1</int64>
+				<BinaryString name="Tags"></BinaryString>
+				<float name="Threshold">2</float>
+				<UniqueId name="UniqueId">19f91422bf1468f8083457cd00006490</UniqueId>
+			</Properties>
+		</Item>
+		<Item class="DepthOfFieldEffect" referent="RBX979BC9D61B4F460B8D39C56BE85662B1">
+			<Properties>
+				<BinaryString name="AttributesSerialize"></BinaryString>
+				<SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
+				<bool name="DefinesCapabilities">false</bool>
+				<bool name="Enabled">false</bool>
+				<float name="FarIntensity">0.100000001</float>
+				<float name="FocusDistance">0.0500000007</float>
+				<UniqueId name="HistoryId">00000000000000000000000000000000</UniqueId>
+				<float name="InFocusRadius">30</float>
+				<string name="Name">DepthOfField</string>
+				<float name="NearIntensity">0.75</float>
+				<int64 name="SourceAssetId">-1</int64>
+				<BinaryString name="Tags"></BinaryString>
+				<UniqueId name="UniqueId">19f91422bf1468f8083457cd00006491</UniqueId>
+			</Properties>
+		</Item>
+		<Item class="SunRaysEffect" referent="RBX8CBE2B020F1941DFBB3280ACB2B0185B">
+			<Properties>
+				<BinaryString name="AttributesSerialize"></BinaryString>
+				<SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
+				<bool name="DefinesCapabilities">false</bool>
+				<bool name="Enabled">true</bool>
+				<UniqueId name="HistoryId">00000000000000000000000000000000</UniqueId>
+				<float name="Intensity">0.00999999978</float>
+				<string name="Name">SunRays</string>
+				<int64 name="SourceAssetId">-1</int64>
+				<float name="Spread">0.100000001</float>
+				<BinaryString name="Tags"></BinaryString>
+				<UniqueId name="UniqueId">19f91422bf1468f8083457cd00006492</UniqueId>
+			</Properties>
+		</Item>
 	</Item>
 	<Item class="VideoService" referent="RBX796E4DD0E5904EE799034235CD4853E9">
 		<Properties>
