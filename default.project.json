@@ -13,9 +13,11 @@
     },
 
     "StarterPlayer": {
+
       "StarterPlayerScripts": {
         "$path": "src/StarterPlayerScripts"
         },
+        
       "StarterCharacterScripts": {
         "$path": "src/StarterCharacterScripts"
       }
@@ -24,6 +26,7 @@
     "ServerStorage": {
       "$path": "src/ServerStorage"
     },
+    
 
     "Workspace": {
       "$properties": {

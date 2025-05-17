@@ -1,14 +1,13 @@
 --Services
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
-
 --Folder
 local Events = ReplicatedStorage:WaitForChild("Events")
 
 --Events
 local WeaponEvent = Events:WaitForChild("WeaponEvent")
-print("Hello world, from client!")
+print("Hello world, from client!!")
 -- This is a client-side script that runs when the game starts.
-local hotbar = require(ReplicatedStorage.HotBar)
+local hotbar = require(ReplicatedStorage.Modules.HotBar)
 local item = hotbar.new()
         :setText("Sword")
         :setLabel("1")
@@ -27,4 +26,3 @@ local function deselected()
         
 end
 item:bindEvent("deselected", deselected)
-
