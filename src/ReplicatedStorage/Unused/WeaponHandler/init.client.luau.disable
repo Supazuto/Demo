@@ -1,0 +1,17 @@
+--Services
+local ReplicatedStorage = game:GetService("ReplicatedStorage")
+local UserInputService = game:GetService("UserInputService")
+
+--Folder
+local Events = ReplicatedStorage:WaitForChild("Events")
+
+--Events
+local WeaponEvent = Events:WaitForChild("WeaponEvent")
+
+UserInputService.InputEnded:Connect(function(input, isTyping)
+    if isTyping then return end
+    if input.KeyCode == Enum.KeyCode.Q then
+        WeaponEvent:FireServer("Equip/Unequip")
+    end
+    
+end)

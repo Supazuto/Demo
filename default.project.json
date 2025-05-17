@@ -2,28 +2,27 @@
   "name": "Demo",
   "tree": {
     "$className": "DataModel",
+    "$ignoreUnknownInstances": true,
 
     "ReplicatedStorage": {
-      "Shared": {
-        "$path": "src/shared"
-      }
+      "$path": "src/ReplicatedStorage"
     },
 
     "ServerScriptService": {
-      "Server": {
-        "$path": "src/server"
-      }
+      "$path": "src/ServerScriptService"
     },
 
     "StarterPlayer": {
       "StarterPlayerScripts": {
-        "Client": {
-          "$path": "src/client"
-        }
-      },
+        "$path": "src/StarterPlayerScripts"
+        },
       "StarterCharacterScripts": {
-        "$path": "src/character"
+        "$path": "src/StarterCharacterScripts"
       }
+    },
+
+    "ServerStorage": {
+      "$path": "src/ServerStorage"
     },
 
     "Workspace": {

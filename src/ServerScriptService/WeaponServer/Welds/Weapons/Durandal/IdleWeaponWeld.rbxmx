@@ -1,0 +1,48 @@
+<roblox xmlns:xmime="http://www.w3.org/2005/05/xmlmime" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://www.roblox.com/roblox.xsd" version="4">
+	<Meta name="ExplicitAutoJoints">true</Meta>
+	<External>null</External>
+	<External>nil</External>
+	<Item class="Motor6D" referent="RBX84CB1E79188A4CB3AAF64392F75735C6">
+		<Properties>
+			<BinaryString name="AttributesSerialize"></BinaryString>
+			<CoordinateFrame name="C0">
+				<X>0</X>
+				<Y>0</Y>
+				<Z>0</Z>
+				<R00>1</R00>
+				<R01>0</R01>
+				<R02>0</R02>
+				<R10>0</R10>
+				<R11>1</R11>
+				<R12>0</R12>
+				<R20>0</R20>
+				<R21>0</R21>
+				<R22>1</R22>
+			</CoordinateFrame>
+			<CoordinateFrame name="C1">
+				<X>-0.200000003</X>
+				<Y>0</Y>
+				<Z>-0.5</Z>
+				<R00>-0.642787635</R00>
+				<R01>0.766044438</R01>
+				<R02>0</R02>
+				<R10>-0.766044438</R10>
+				<R11>-0.642787635</R11>
+				<R12>0</R12>
+				<R20>0</R20>
+				<R21>0</R21>
+				<R22>1</R22>
+			</CoordinateFrame>
+			<SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
+			<bool name="DefinesCapabilities">false</bool>
+			<float name="DesiredAngle">0</float>
+			<bool name="Enabled">true</bool>
+			<float name="MaxVelocity">0</float>
+			<string name="Name">IdleWeaponWeld</string>
+			<Ref name="Part0">RBXBA7E0799CA264F77835F26C95F128092</Ref>
+			<Ref name="Part1">RBX863C7A283B704551A0C53FCBDC1A26A5</Ref>
+			<int64 name="SourceAssetId">-1</int64>
+			<BinaryString name="Tags"></BinaryString>
+		</Properties>
+	</Item>
+</roblox>
