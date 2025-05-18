@@ -38,6 +38,13 @@ Players.PlayerAdded:Connect(function(player)
         character:SetAttribute("Equipped", false)
         character:SetAttribute("CurrentWeapon", "Durandal")
 
+        character:SetAttribute("Combo", 1)
+        character:SetAttribute("Stunned", false)
+        character:SetAttribute("Swing", false)
+        character:SetAttribute("Attacking", false)
+
+        character.Parent = workspace.Characters
+
         local CurrentWeapon = character:GetAttribute("CurrentWeapon")
 
         local Weapon = WeaponModels[CurrentWeapon]:Clone()
@@ -64,6 +71,13 @@ WeaponsEvent.OnServerEvent:Connect(function(player, action)
     local rightArm = character:WaitForChild("Right Arm")
 
     local CurrentWeapon = character:GetAttribute("CurrentWeapon")
+
+    local attacking = character:GetAttribute("Attacking")
+    local stunned = character:GetAttribute("Stunned")
+
+    if stunned or attacking then
+        return
+    end
 
     if action == "Equip/Unequip" and not character:GetAttribute("Equipped") and not EquipDebounce[player] then --equipping
         EquipDebounce[player] = true
