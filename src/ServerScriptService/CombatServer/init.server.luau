@@ -8,6 +8,7 @@ local SoundService = game:GetService("SoundService")
 local WeaponSounds = SoundService:WaitForChild("SFX"):WaitForChild("Weapons")
 local ReplicatedStorageModules = ReplicatedStorage:WaitForChild("Modules")
 local ServerStorageModules = ServerStorage:WaitForChild("Modules")
+local WeaponsAnimations = ReplicatedStorage:WaitForChild("Animations"):WaitForChild("Weapons")
 
 --Events
 local CombatEvent = ReplicatedStorage:WaitForChild("Events"):WaitForChild("Combat")
@@ -76,5 +77,6 @@ CombatEvent.OnServerEvent:Connect(function(player)
 
     SoundsModule.PlaySound(WeaponSounds[CurrentWeapon].Combat.Swing, character.Torso)
 
-    HitServiceModule.Normal_HitboxHit(player, character, CurrentWeapon, Hitbox)
+    local hitAnimation = WeaponsAnimations[CurrentWeapon].Hit["Hit" .. character:GetAttribute("Combo")]
+    HitServiceModule.Normal_HitboxHit(player, character, CurrentWeapon, Hitbox, hitAnimation)
 end)

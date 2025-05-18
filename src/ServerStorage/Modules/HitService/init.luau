@@ -14,13 +14,17 @@ local ServerStorageModules = ServerStorage:WaitForChild("Modules")
 
 --Events
 local CombatEvent = ReplicatedStorage:WaitForChild("Events"):WaitForChild("Combat")
+local VFX_Event = ReplicatedStorage:WaitForChild("Events"):WaitForChild("VFX")
 
 --Modules
 local SoundsModule = require(ReplicatedStorageModules.Combat.SoundsModule)
 local ServerCombatModule = require(ServerStorageModules.CombatModules)
 
 
-function module.Normal_HitboxHit(player, character, weapon, Hitbox)
+function module.Normal_HitboxHit(player, character, weapon, Hitbox, ...)
+    local hitAnimation = ...
+
+
     Hitbox.OnHit:Connect(function(hit)
         if hit.Parent:FindFirstChild("Humanoid") and hit. Parent ~= character then
             
@@ -28,9 +32,20 @@ function module.Normal_HitboxHit(player, character, weapon, Hitbox)
             local eHumanoid = eCharacter:FindFirstChild("Humanoid")
             local eHumanoidRootPart = eCharacter:FindFirstChild("HumanoidRootPart")
 
-            eHumanoid:TakeDamage(10)
+            if eHumanoid.Health > 0 then
+            
+                eHumanoid:TakeDamage(10)
 
-            ServerCombatModule.stopAnimations(eHumanoid)
+                
+
+                ServerCombatModule.stopAnimations(eHumanoid)
+
+                VFX_Event:FireAllClients("CombatEffects", ReplicatedStorage.Effects.Combat["Hit-01"], hit.CFrame, .3)
+
+                SoundsModule.PlaySound(WeaponSounds[weapon].Combat.hitSound, eCharacter.Torso)
+
+                eHumanoid.Animator:LoadAnimation(hitAnimation):Play()
+            end
         end
     end)
     
