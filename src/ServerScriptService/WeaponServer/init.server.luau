@@ -1,6 +1,7 @@
 --Services
 local Players = game:GetService("Players")
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
+local ServerStorage = game:GetService("ServerStorage")
 local SoundService = game:GetService("SoundService")
 local Debirs = game:GetService("Debris")
 
@@ -13,12 +14,14 @@ local AnimationsFolder = ReplicatedStorage:WaitForChild("Animations")
 local WeaponsAnimations = AnimationsFolder:WaitForChild("Weapons")
 local WeaponsSound = SoundService:WaitForChild("SFX"):WaitForChild("Weapons")
 local ReplicatedStorageModules = ReplicatedStorage:WaitForChild("Modules")
+local ServerStorageModules = ServerStorage:WaitForChild("Modules")
 
 --Events
 local WeaponsEvent = Events:WaitForChild("WeaponEvent")
 
 --Modules
 local SoundsModule = require(ReplicatedStorageModules.Combat.SoundsModule)
+local HelpfulModule = require(ServerStorageModules.Other.Helpful)
 
 --Object
 local Welds = {}
@@ -33,10 +36,10 @@ local EquipDebounce = {}
 
 Players.PlayerAdded:Connect(function(player)
     player.CharacterAdded:Connect(function(character)
-        local torso = character:WaitForChild("Torso")
+        local torso = character:WaitForChild("UpperTorso")
 
         character:SetAttribute("Equipped", false)
-        character:SetAttribute("CurrentWeapon", "Durandal")
+        character:SetAttribute("CurrentWeapon", "NewDurandal")
 
         character:SetAttribute("Combo", 1)
         character:SetAttribute("Stunned", false)
@@ -56,6 +59,16 @@ Players.PlayerAdded:Connect(function(player)
         Welds[player].Part1 = Weapon
         
     end)
+
+    player.CharacterAppearanceLoaded:Connect(function(character)
+        for i, v in pairs(character:GetDescendants()) do
+            if v.Parent:IsA("Accessory") and v:IsA("Part") then
+                v.CanTouch = false
+                v.CanQuery = false
+            end
+        end
+        
+    end)
 end)
 
 Players.PlayerRemoving:Connect(function(player)
@@ -67,22 +80,18 @@ end)
 WeaponsEvent.OnServerEvent:Connect(function(player, action)
     local character = player.Character
     local humanoid = character:WaitForChild("Humanoid")
-    local torso = character:WaitForChild("Torso")
-    local rightArm = character:WaitForChild("Right Arm")
+    local torso = character:WaitForChild("UpperTorso")
+    local rightArm = character:WaitForChild("RH")
 
     local CurrentWeapon = character:GetAttribute("CurrentWeapon")
 
-    local attacking = character:GetAttribute("Attacking")
-    local stunned = character:GetAttribute("Stunned")
 
-    if stunned or attacking then
-        return
-    end
+    if HelpfulModule.CheckForAttribute(character, true, true) then return end
 
     if action == "Equip/Unequip" and not character:GetAttribute("Equipped") and not EquipDebounce[player] then --equipping
         EquipDebounce[player] = true
 
-        Events.VFX:FireAllClients("CombatEffects", ReplicatedStorage.Effects.Combat.Slash, character.Torso.CFrame, 3)
+        --Events.VFX:FireAllClients("CombatEffects", ReplicatedStorage.Effects.Combat.Slash, character.Torso.CFrame, 3)
 
         SoundsModule.PlaySound(WeaponsSound[CurrentWeapon].Main.Equip, torso)
 
@@ -101,6 +110,16 @@ WeaponsEvent.OnServerEvent:Connect(function(player, action)
             IdleAnimation[player]:Play()
             character:SetAttribute("Equipped", true)
             EquipDebounce[player] = false
+        end)
+
+        EquippedAnimation[player].Stopped:Connect(function()
+            if character:GetAttribute("Stunned") then
+            Welds[player].Part0 = rightArm
+            Welds[player].C1 = WeaponsWeld[CurrentWeapon].HoldingWeaponWeld.C1
+            IdleAnimation[player]:Play()
+            character:SetAttribute("Equipped", true)
+            EquipDebounce[player] = false
+            end     
         end)
 
 
@@ -123,6 +142,15 @@ WeaponsEvent.OnServerEvent:Connect(function(player, action)
         UnequippedAnimation[player]:GetMarkerReachedSignal("UnEquipped"):Connect(function()
             character:SetAttribute("Equipped", false)
             EquipDebounce[player] = false
+
+        UnequippedAnimation[player].Stopped:Connect(function()
+            if character:GetAttribute("Stunned") then
+            Welds[player].Part0 = torso
+            Welds[player].C1 = WeaponsWeld[CurrentWeapon].IdleWeaponWeld.C1
+            character:SetAttribute("Equipped", false)
+            EquipDebounce[player] = false
+                end     
+            end)
         end)
     end
 end)

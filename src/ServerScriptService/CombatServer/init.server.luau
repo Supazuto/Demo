@@ -18,6 +18,8 @@ local SoundsModule = require(ReplicatedStorageModules.Combat.SoundsModule)
 local ServerCombatModule = require(ServerStorageModules.CombatModules)
 local HitServiceModule = require(ServerStorageModules.HitService)
 local RaycastHitbox = require(ServerStorageModules.Hitboxes.RaycastHitboxV4)
+local WeaponStatsModule = require(ServerStorageModules.Weapons.WeaponStats)
+local HelpfulModule = require(ServerStorageModules.Other.Helpful)
 --Stuff
 local MaxCombo = 3
 
@@ -25,13 +27,7 @@ CombatEvent.OnServerEvent:Connect(function(player)
     local character = player.Character
     local humanoid = character:WaitForChild("Humanoid")
 
-    local attacking = character:GetAttribute("Attacking")
-    local stunned = character:GetAttribute("Stunned")
-    local equipped = character:GetAttribute("Equipped")
-
-    if attacking or stunned or not equipped then
-        return
-    end
+    if HelpfulModule.CheckForAttribute(character, true, true, true) then return end
     
     local CurrentWeapon = character:GetAttribute("CurrentWeapon")
 
@@ -57,11 +53,15 @@ CombatEvent.OnServerEvent:Connect(function(player)
 
     playSwingAnimation:GetMarkerReachedSignal("HitEnd"):Connect(function()
         Hitbox:HitStop()
+
+        local WeaponStats = WeaponStatsModule.getStats(CurrentWeapon)
+        local swingReset = WeaponStats.SwingReset
+
         character:SetAttribute("Swing", false)
         if character:GetAttribute("Combo") == MaxCombo then
             task.wait(1)
         else
-            task.wait(.1)
+            task.wait(swingReset)
         end
         character:SetAttribute("Attacking", false)
     end)
@@ -75,7 +75,7 @@ CombatEvent.OnServerEvent:Connect(function(player)
 
     playSwingAnimation:Play()
 
-    SoundsModule.PlaySound(WeaponSounds[CurrentWeapon].Combat.Swing, character.Torso)
+    SoundsModule.PlaySound(WeaponSounds[CurrentWeapon].Combat.Swing, character.UpperTorso)
 
     local hitAnimation = WeaponsAnimations[CurrentWeapon].Hit["Hit" .. character:GetAttribute("Combo")]
     HitServiceModule.Normal_HitboxHit(player, character, CurrentWeapon, Hitbox, hitAnimation)

@@ -10,7 +10,7 @@ print("Hello world, from client!!")
 local hotbar = require(ReplicatedStorage.Modules.HotBar)
 local item = hotbar.new()
         :setText("Sword")
-        :setLabel("q")
+        :setLabel("1")
         :setName("Sword")
         :bindToggleKey("Q")
 
