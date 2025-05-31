@@ -22,6 +22,7 @@ local SoundsModule = require(ReplicatedStorageModules.Combat.SoundsModule)
 local ServerCombatModule = require(ServerStorageModules.CombatModules)
 local WeaponStatsModule = require(ServerStorageModules.Weapons.WeaponStats)
 local StunHandler = require(ServerStorageModules.Other.StunHandlerV2)
+local HelpfulModule = require(ServerStorageModules.Other.Helpful)
 
 function module.BodyVelocity(Parent, HumanoidRootPart, Knockback, stayTime)
     local BodyVelocity = Instance.new("BodyVelocity")
@@ -38,45 +39,45 @@ function module.Normal_HitboxHit(player, character, weapon, Hitbox, ...)
     local hitAnimation = ...
 
 
-    Hitbox.OnHit:Connect(function(hit)
-        if hit.Parent:FindFirstChild("Humanoid") and hit. Parent ~= character then
+    Hitbox.OnHit:Connect(function(hit, eHumanoid)
+        if eHumanoid and hit. Parent ~= character then
             
             local eCharacter = hit.Parent
+            local eTorso = eCharacter:FindFirstChild("UpperTorso") or eCharacter:FindFirstChild("Torso")
             local eHumanoid = eCharacter:FindFirstChild("Humanoid")
             local eHumanoidRootPart = eCharacter:FindFirstChild("HumanoidRootPart")
 
-            if eHumanoid.Health > 0 and not  eCharacter:GetAttribute("iframes") then
 
-                local WeaponStats = WeaponStatsModule.getStats(weapon)
-                local damage = WeaponStats.Damage
-                local knockback = WeaponStats.Knockback
-                local stunTime = WeaponStats.StunTime
+            local WeaponStats = WeaponStatsModule.getStats(weapon)
+            local damage = WeaponStats.Damage
+            local knockback = WeaponStats.Knockback
+            local stunTime = WeaponStats.StunTime
+
+            if HelpfulModule.CheckForStatus(eCharacter, character, damage, true) then return end
             
-                eHumanoid:TakeDamage(damage)
+            eHumanoid:TakeDamage(damage)
 
                 
 
-                ServerCombatModule.stopAnimations(eHumanoid)
+            ServerCombatModule.stopAnimations(eHumanoid)
 
-                VFX_Event:FireAllClients("CombatEffects", ReplicatedStorage.Effects.Combat["Hit-01"], hit.CFrame, .3)
+            VFX_Event:FireAllClients("CombatEffects", ReplicatedStorage.Effects.Combat["Hit-01"], hit.CFrame, .3)
 
-                SoundsModule.PlaySound(WeaponSounds[weapon].Combat.hitSound, eCharacter.Torso)
+            SoundsModule.PlaySound(WeaponSounds[weapon].Combat.hitSound, eTorso)
 
-                eHumanoid.Animator:LoadAnimation(hitAnimation):Play()
+            eHumanoid.Animator:LoadAnimation(hitAnimation):Play()
 
-                module.BodyVelocity(character.HumanoidRootPart, character.HumanoidRootPart, knockback, 0.2)
+            module.BodyVelocity(character.HumanoidRootPart, character.HumanoidRootPart, knockback, 0.2)
 
-                if character:GetAttribute("Combo") >= 3 then
-                    knockback = knockback * 5
-                end
-
-                module.BodyVelocity(eHumanoidRootPart, character.HumanoidRootPart, knockback, 0.2)
-
-                StunHandler.Stun(eHumanoid, stunTime)
+            if character:GetAttribute("Combo") >= 3 then
+                knockback = knockback * 5
             end
+
+            module.BodyVelocity(eHumanoidRootPart, character.HumanoidRootPart, knockback, 0.2)
+
+            StunHandler.Stun(eHumanoid, stunTime)
         end
     end)
-    
 end
 
 return module

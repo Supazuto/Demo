@@ -27,7 +27,7 @@ CombatEvent.OnServerEvent:Connect(function(player)
     local character = player.Character
     local humanoid = character:WaitForChild("Humanoid")
 
-    if HelpfulModule.CheckForAttribute(character, true, true, true) then return end
+    if HelpfulModule.CheckForAttribute(character, true, true, true, true, true) then return end
     
     local CurrentWeapon = character:GetAttribute("CurrentWeapon")
 
@@ -43,6 +43,7 @@ CombatEvent.OnServerEvent:Connect(function(player)
 
     local Hitbox = RaycastHitbox.new(character[CurrentWeapon])
 
+    local Torso = character:FindFirstChild("UpperTorso") or character:FindFirstChild("Torso")
     local SwingAnimation = ServerCombatModule.getSwingAnimation(character, CurrentWeapon)
     local playSwingAnimation = humanoid:LoadAnimation(SwingAnimation)
 
@@ -75,7 +76,7 @@ CombatEvent.OnServerEvent:Connect(function(player)
 
     playSwingAnimation:Play()
 
-    SoundsModule.PlaySound(WeaponSounds[CurrentWeapon].Combat.Swing, character.UpperTorso)
+    SoundsModule.PlaySound(WeaponSounds[CurrentWeapon].Combat.Swing, Torso)
 
     local hitAnimation = WeaponsAnimations[CurrentWeapon].Hit["Hit" .. character:GetAttribute("Combo")]
     HitServiceModule.Normal_HitboxHit(player, character, CurrentWeapon, Hitbox, hitAnimation)

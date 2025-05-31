@@ -46,7 +46,7 @@ Players.PlayerAdded:Connect(function(player)
         character:SetAttribute("Swing", false)
         character:SetAttribute("Attacking", false)
 
-        character.Parent = workspace.Characters
+        --character.Parent = workspace.Characters
 
         local CurrentWeapon = character:GetAttribute("CurrentWeapon")
 
@@ -86,7 +86,7 @@ WeaponsEvent.OnServerEvent:Connect(function(player, action)
     local CurrentWeapon = character:GetAttribute("CurrentWeapon")
 
 
-    if HelpfulModule.CheckForAttribute(character, true, true) then return end
+    if HelpfulModule.CheckForAttribute(character, false, true, true) then return end
 
     if action == "Equip/Unequip" and not character:GetAttribute("Equipped") and not EquipDebounce[player] then --equipping
         EquipDebounce[player] = true

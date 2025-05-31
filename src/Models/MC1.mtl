@@ -1,0 +1,150 @@
+newmtl Startercharacter381Mtl
+Material Color
+Ka 1 1 0
+Kd 1 1 0
+Ks 0.396078 0.396078 0 
+
+d 1
+
+Ns 0
+
+newmtl Startercharacter241Mtl
+Material Color
+Ka 0.00715504 0.018913 0.0315514
+Kd 0.00715504 0.018913 0.0315514
+Ks 0.000645356 0.00170588 0.00284581 
+
+d 1
+
+Ns 0
+
+newmtl Startercharacter461Mtl
+Material Color
+Ka 0.0511221 0.0277553 0.0179364
+Kd 0.0511221 0.0277553 0.0179364
+Ks 0.00320766 0.00174151 0.00112542 
+
+d 1
+
+Ns 0
+
+newmtl Startercharacter481Mtl
+Material Color
+Ka 0.940601 0.940601 0.940601
+Kd 0.940601 0.940601 0.940601
+Ks 0.372552 0.372552 0.372552 
+
+d 1
+
+Ns 0
+
+newmtl Startercharacter471Mtl
+Material Color
+Ka 0.00715504 0.018913 0.0315514
+Kd 0.00715504 0.018913 0.0315514
+Ks 0.00283396 0.00749103 0.0124968 
+
+d 1
+
+Ns 0
+
+newmtl Startercharacter421Mtl
+Material Color
+Ka 0.0511221 0.0277553 0.0179364
+Kd 0.0511221 0.0277553 0.0179364
+Ks 0.0202483 0.0109933 0.00710423 
+
+d 1
+
+Ns 0
+
+newmtl Startercharacter371Mtl
+Material Color
+Ka 0.124741 0.113921 0.121986
+Kd 0.124741 0.113921 0.121986
+Ks 0.0494072 0.0451216 0.0483159 
+
+d 1
+
+Ns 0
+
+newmtl Startercharacter351Mtl
+Material Color
+Ka 0.940601 0.940601 0.940601
+Kd 0.940601 0.940601 0.940601
+Ks 0.0590181 0.0590181 0.0590181 
+
+d 1
+
+Ns 0
+
+newmtl Startercharacter201Mtl
+Material Color
+Ka 0.373615 0.368591 0.383775
+Kd 0.373615 0.368591 0.383775
+Ks 0.147981 0.145991 0.152005 
+
+d 1
+
+Ns 0
+
+newmtl Startercharacter341Mtl
+Material Color
+Ka 0.00258583 0.00258583 0.00258583
+Kd 0.00258583 0.00258583 0.00258583
+Ks 0.00102419 0.00102419 0.00102419 
+
+d 1
+
+Ns 0
+
+newmtl Startercharacter301Mtl
+Material Color
+Ka 0.804559 0.804559 0.84337
+Kd 0.804559 0.804559 0.84337
+Ks 0.318669 0.318669 0.334041 
+
+d 1
+
+Ns 0
+
+newmtl Startercharacter251Mtl
+Material Color
+Ka 0.00258583 0.00258583 0.00258583
+Kd 0.00258583 0.00258583 0.00258583
+Ks 0.000233231 0.000233231 0.000233231 
+
+d 1
+
+Ns 0
+
+newmtl Startercharacter51Mtl
+Material Color
+Ka 0.0915184 0.0511221 0.0328759
+Kd 0.0915184 0.0511221 0.0328759
+Ks 0.0362484 0.0202483 0.0130214 
+
+d 1
+
+Ns 0
+
+newmtl Startercharacter21Mtl
+Material Color
+Ka 0.0915184 0.0134734 0.0134734
+Kd 0.0915184 0.0134734 0.0134734
+Ks 0.0362484 0.00533652 0.00533652 
+
+d 1
+
+Ns 0
+
+newmtl Meta1q1pmrhe2lhei5hwituojqw443gn5zg2ir2lmycyljqfyydgq11Mtl
+Material Color
+Ka 0.373615 0.368591 0.383775
+Kd 0.373615 0.368591 0.383775
+Ks 0.0234425 0.0231273 0.02408 
+
+d 1
+
+Ns 0
+
