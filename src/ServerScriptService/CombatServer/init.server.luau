@@ -79,5 +79,5 @@ CombatEvent.OnServerEvent:Connect(function(player)
     SoundsModule.PlaySound(WeaponSounds[CurrentWeapon].Combat.Swing, Torso)
 
     local hitAnimation = WeaponsAnimations[CurrentWeapon].Hit["Hit" .. character:GetAttribute("Combo")]
-    HitServiceModule.Normal_HitboxHit(player, character, CurrentWeapon, Hitbox, hitAnimation)
+    HitServiceModule.Normal_HitboxHit(player, character, CurrentWeapon, "", Hitbox, hitAnimation)
 end)

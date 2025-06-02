@@ -5,24 +5,26 @@ local Events = ReplicatedStorage:WaitForChild("Events")
 
 --Events
 local WeaponEvent = Events:WaitForChild("WeaponEvent")
+local SkillEvent = Events:WaitForChild("Skill")
 print("Hello world, from client!!")
 -- This is a client-side script that runs when the game starts.
+--Modules
 local hotbar = require(ReplicatedStorage.Modules.HotBar)
+
+--function
+local function toggled()
+	print("Toggled")
+	WeaponEvent:FireServer("Equip/Unequip")
+end
+
+
+--Items
 local item = hotbar.new()
-        :setText("Sword")
-        :setLabel("1")
-        :setName("Sword")
-        :bindToggleKey("Q")
+	:setText("Sword")
+	:setLabel("1")
+	:setName("Sword")
+	:bindToggleKey("E")
 
-local function selected()
-        print("Selected")
-        WeaponEvent:FireServer("Equip/Unequip")
-end
-item:bindEvent("selected", selected)
 
-local function deselected()
-        print("Deselected")
-        WeaponEvent:FireServer("Equip/Unequip")
-        
-end
-item:bindEvent("deselected", deselected)
+
+item:bindEvent("toggled", toggled)

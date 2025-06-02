@@ -19,7 +19,7 @@ local Attachment = Instance.new("Attachment", humanoidRootPart)
 
 --Values
 local DashSpeed = 50
-local CoolDownTime = 1.5
+local CoolDownTime = 0.5
 local DashTrack = nil
 local DashAnimation = nil
 local isDashing = false
@@ -112,7 +112,7 @@ local function onKeyPress(key, isTyping)
     if isTyping then
         return
     end
-    if key.KeyCode == Enum.KeyCode.E then
+    if key.KeyCode == Enum.KeyCode.Q then
         DashActive()
     end
 end
