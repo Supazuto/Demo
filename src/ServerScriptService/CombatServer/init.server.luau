@@ -27,7 +27,7 @@ CombatEvent.OnServerEvent:Connect(function(player)
     local character = player.Character
     local humanoid = character:WaitForChild("Humanoid")
 
-    if HelpfulModule.CheckForAttribute(character, true, true, true, true, true) then return end
+    if HelpfulModule.CheckForAttribute(character, true, true, true, true, true, true, true, true) then return end
     
     local CurrentWeapon = character:GetAttribute("CurrentWeapon")
 

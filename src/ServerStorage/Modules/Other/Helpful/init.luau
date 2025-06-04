@@ -13,7 +13,7 @@ function module.CheckForStatus(echaracter, character,blockingdamge,CheckforBlock
 	return stop
 end
 
-function module.CheckForAttribute(character, attack, swing, stun, equipped, sprinting, dashing, skill)
+function module.CheckForAttribute(character, attack, swing, stun, equipped, sprinting, dashing, skill, blocking)
 	local attacking = character:GetAttribute("Attacking")
 	local swinging = character:GetAttribute("Swing")
 	local stunned = character:GetAttribute("Stunned")
@@ -21,6 +21,7 @@ function module.CheckForAttribute(character, attack, swing, stun, equipped, spri
 	local isSprinting = character:GetAttribute("IsSprinting")
 	local isDashing = character:GetAttribute("IsDashing")
 	local skillActive = character:GetAttribute("Skill")
+	local isBlocking = character:GetAttribute("Blocking")
 
 	local stop = false
 
@@ -31,6 +32,7 @@ function module.CheckForAttribute(character, attack, swing, stun, equipped, spri
 	if equipped and not isEquipped then stop = true end
 	if dashing and isDashing then stop = true end
 	if skillActive and skill then stop = true end
+	if blocking and isBlocking then stop = true end
 
 	return stop
 end

@@ -4,6 +4,7 @@ local ReplicatedStorage = game:GetService("ReplicatedStorage")
 local ServerStorage = game:GetService("ServerStorage")
 local SoundService = game:GetService("SoundService")
 local Debirs = game:GetService("Debris")
+local StarterPlayer = game:GetService("StarterPlayer")
 
 --Folders
 local Models = ReplicatedStorage.Models
@@ -18,6 +19,7 @@ local ServerStorageModules = ServerStorage:WaitForChild("Modules")
 
 --Events
 local WeaponsEvent = Events:WaitForChild("WeaponEvent")
+local blockingEvent = Events:WaitForChild("Blocking")
 
 --Modules
 local SoundsModule = require(ReplicatedStorageModules.Combat.SoundsModule)
@@ -30,37 +32,76 @@ local Welds = {}
 local EquippedAnimation = {}
 local UnequippedAnimation = {}
 local IdleAnimation = {}
+local BlockingAnimation = {}
 
 --Values
 local EquipDebounce = {}
+
+
+local function ChangeWeapon(player, character, torso)
+
+	character:SetAttribute("Equipped", false)
+	character:SetAttribute("Combo", 1)
+	character:SetAttribute("Stunned", false)
+	character:SetAttribute("Swing", false)
+	character:SetAttribute("Attacking", false)
+	character:SetAttribute("iframes", false)
+	character:SetAttribute("isBlocking", false)
+	character:SetAttribute("Blocking", 0)
+
+	local CurrentWeapon = character:GetAttribute("CurrentWeapon")
+
+	local Weapon = WeaponModels[CurrentWeapon]:Clone()
+	Weapon.Parent = character
+
+	Welds[player] = WeaponsWeld[CurrentWeapon].IdleWeaponWeld:Clone()
+	Welds[player].Parent = torso
+	Welds[player].Part0 = torso
+	Welds[player].Part1 = Weapon
+
+	if EquippedAnimation[player] then
+		EquippedAnimation[player]:Stop()
+	end
+	if IdleAnimation[player] then
+		IdleAnimation[player]:Stop()
+	end
+	if  UnequippedAnimation[player] then
+		UnequippedAnimation[player]:Stop()
+	end
+
+	EquipDebounce[player] = false
+	
+end
+
+
 
 Players.PlayerAdded:Connect(function(player)
 	player.CharacterAdded:Connect(function(character)
 		local torso = character:WaitForChild("UpperTorso")
 
-		character:SetAttribute("Equipped", false)
+		
 		character:SetAttribute("CurrentWeapon", "NewDurandal")
 
-		character:SetAttribute("Combo", 1)
-		character:SetAttribute("Stunned", false)
-		character:SetAttribute("Swing", false)
-		character:SetAttribute("Attacking", false)
-
+		character:SetAttribute("CurrentSkill", "AirSlash")
 		character:SetAttribute("Fire", false)
 		character:SetAttribute("SkillActive", false)
-		character:SetAttribute("CurrentSkill", "AirSlash")
+
+		
 
 		--character.Parent = workspace.Characters
 
-		local CurrentWeapon = character:GetAttribute("CurrentWeapon")
+		ChangeWeapon(player, character, torso)
 
-		local Weapon = WeaponModels[CurrentWeapon]:Clone()
-		Weapon.Parent = character
+		character:GetAttributeChangedSignal("CurrentWeapon"):Connect(function()
+			for i, weapons in pairs(WeaponModels:GetChildren()) do
+				if character:FindFirstChild(weapons.Name) then
+					character:FindFirstChild(weapons.Name):Destroy()
+				end
+			end
 
-		Welds[player] = WeaponsWeld[CurrentWeapon].IdleWeaponWeld:Clone()
-		Welds[player].Parent = torso
-		Welds[player].Part0 = torso
-		Welds[player].Part1 = Weapon
+			ChangeWeapon(player, character, torso)
+			
+		end)
 
 	end)
 
@@ -90,7 +131,7 @@ WeaponsEvent.OnServerEvent:Connect(function(player, action)
 	local CurrentWeapon = character:GetAttribute("CurrentWeapon")
 
 
-	if HelpfulModule.CheckForAttribute(character, false, true, true) then return end
+	if HelpfulModule.CheckForAttribute(character, false, true, true, nil, true) then return end
 
 	if action == "Equip/Unequip" and not character:GetAttribute("Equipped") and not EquipDebounce[player] then --equipping
 		EquipDebounce[player] = true
@@ -157,4 +198,43 @@ WeaponsEvent.OnServerEvent:Connect(function(player, action)
 			end)
 		end)
 	end
+end)
+
+blockingEvent.OnServerEvent:Connect(function(player, action)
+	local character = player.Character
+	local humanoid = character:WaitForChild("Humanoid")
+	local torso = character:WaitForChild("UpperTorso")
+	local rightArm = character:WaitForChild("RH")
+
+	local CurrentWeapon = character:GetAttribute("CurrentWeapon")
+	
+
+
+	if HelpfulModule.CheckForAttribute(character, false, true, true, true) then return end
+
+	if action == "Blocking"  then --equipping
+
+		--Events.VFX:FireAllClients("CombatEffects", ReplicatedStorage.Effects.Combat.Slash, character.Torso.CFrame, 3)
+
+		SoundsModule.PlaySound(WeaponsSound[CurrentWeapon].Blocking.BlockingStart, torso)
+
+		BlockingAnimation[player] = humanoid:LoadAnimation(WeaponsAnimations[CurrentWeapon].Blocking.Blocking)
+		BlockingAnimation[player]:Play()
+
+		character:SetAttribute("isBlocking", true)
+		humanoid.WalkSpeed = 4
+		humanoid.JumpHeight = 0
+
+	elseif action == "UnBlocking" and character:GetAttribute("isBlocking") then  --unequipping
+
+		SoundsModule.PlaySound(WeaponsSound[CurrentWeapon].Blocking.BlockingStop, torso)
+		BlockingAnimation[player]:Stop()
+
+		character:SetAttribute("isBlocking", false)
+		humanoid.WalkSpeed = StarterPlayer.CharacterWalkSpeed
+		humanoid.JumpHeight = StarterPlayer.CharacterJumpHeight
+
+
+end
+
 end)
