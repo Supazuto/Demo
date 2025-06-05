@@ -68,7 +68,7 @@ CombatEvent.OnServerEvent:Connect(function(player)
     end)
 
     playSwingAnimation.Stopped:Connect(function()
-        if not character:GetAttribute("Swing") then
+        if not character:GetAttribute("Swing") and not character:GetAttribute("isBlocking") then
             humanoid.WalkSpeed = StarterPlayer.CharacterWalkSpeed
             humanoid.JumpHeight = StarterPlayer.CharacterJumpHeight
         end

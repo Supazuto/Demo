@@ -84,6 +84,7 @@ return {Stun = function (humanoid, duration)
     humanoid.JumpPower = StarterPlayer.CharacterJumpPower
     humanoid.Parent:SetAttribute("Attacking", false)
     humanoid.Parent:SetAttribute("Swing", false)
+	humanoid.Parent:SetAttribute("isBlocking", false)
 	
 	if not data.stunned then -- not stunned
 		data.stunned = true

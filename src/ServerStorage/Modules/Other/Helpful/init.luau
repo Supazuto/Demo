@@ -1,5 +1,9 @@
 local module = {}
 
+local BlockingModule = require(script.Parent.Parent.BlockingModule)
+
+
+
 function module.CheckForStatus(echaracter, character,blockingdamge,CheckforBlocking)
 
 	local stop = false
@@ -10,7 +14,34 @@ function module.CheckForStatus(echaracter, character,blockingdamge,CheckforBlock
 		stop = true
 	end
 
+	if CheckforBlocking and not stop then
+		if character:GetAttribute("Blocking") and module.CheckInFront(character, echaracter) then 
+			print("Blocking")
+			BlockingModule.Blocking(echaracter, blockingdamge)
+			stop = true
+			
+		end
+
 	return stop
+
+	end
+end
+
+
+function module.CheckInFront(character, echaracter)
+	local ehumanoidRootPart = echaracter:FindFirstChild("HumanoidRootPart")
+	local attackDir = (character.HumanoidRootPart.Position - ehumanoidRootPart.Position).Unit
+	local frontDir = ehumanoidRootPart.CFrame.LookVector
+	local Dir = math.acos(attackDir:Dot(frontDir)) < math.rad(90)
+
+	if not Dir then
+		print("Not infront")
+		return false
+	else
+		print("Infront")
+		return true
+	end
+	
 end
 
 function module.CheckForAttribute(character, attack, swing, stun, equipped, sprinting, dashing, skill, blocking)

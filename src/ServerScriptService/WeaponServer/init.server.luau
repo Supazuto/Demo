@@ -171,6 +171,8 @@ WeaponsEvent.OnServerEvent:Connect(function(player, action)
 	elseif action == "Equip/Unequip" and character:GetAttribute("Equipped") and not EquipDebounce[player]then  --unequipping
 		EquipDebounce[player] = true
 
+		character:SetAttribute("Equipped", false)
+
 		SoundsModule.PlaySound(WeaponsSound[CurrentWeapon].Main.UnEquip, torso)
 
 		IdleAnimation[player]:Stop()
@@ -185,7 +187,6 @@ WeaponsEvent.OnServerEvent:Connect(function(player, action)
 		end)
 
 		UnequippedAnimation[player]:GetMarkerReachedSignal("UnEquipped"):Connect(function()
-			character:SetAttribute("Equipped", false)
 			EquipDebounce[player] = false
 
 			UnequippedAnimation[player].Stopped:Connect(function()

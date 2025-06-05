@@ -30,7 +30,7 @@ end
 UserInputService.InputBegan:Connect(function(input, isTyping)
     if isTyping then return end
 
-    if input.KeyCode == Enum.KeyCode.G and not debounce then
+    if input.KeyCode == Enum.KeyCode.G then
         startBlocking()
     end
 end)
@@ -38,7 +38,7 @@ end)
 UserInputService.InputEnded:Connect(function(input, isTyping)
     if isTyping then return end
 
-    if input.KeyCode == Enum.KeyCode.G and not debounce then
+    if input.KeyCode == Enum.KeyCode.G then
         stopBlocking()
     end
 end)
