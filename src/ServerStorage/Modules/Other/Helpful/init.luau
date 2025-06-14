@@ -4,7 +4,7 @@ local BlockingModule = require(script.Parent.Parent.BlockingModule)
 
 
 
-function module.CheckForStatus(echaracter, character,blockingdamge,CheckforBlocking)
+function module.CheckForStatus(echaracter, character,blockingdamge,hitposition,CheckforBlocking)
 
 	local stop = false
 	local humanoid = echaracter:FindFirstChildWhichIsA("Humanoid")
@@ -17,7 +17,7 @@ function module.CheckForStatus(echaracter, character,blockingdamge,CheckforBlock
 	if CheckforBlocking and not stop then
 		if character:GetAttribute("Blocking") and module.CheckInFront(character, echaracter) then 
 			print("Blocking")
-			BlockingModule.Blocking(echaracter, blockingdamge)
+			BlockingModule.Blocking(echaracter, blockingdamge, hitposition)
 			stop = true
 			
 		end

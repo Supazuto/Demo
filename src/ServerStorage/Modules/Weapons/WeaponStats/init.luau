@@ -12,12 +12,14 @@ local info = {
         Knockback = 10,
         SwingReset = .1,
         StunTime = 1,
+        BlockingWalkspeed = 5,
     },
     ["LUHOPE"] = {
         Damage = 20,
         Knockback = 25,
         SwingReset = .2,
         StunTime = 1.5,
+        BlockingWalkspeed = 5,
     }
 }
 

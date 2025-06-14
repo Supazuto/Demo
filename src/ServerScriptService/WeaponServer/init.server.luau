@@ -24,6 +24,7 @@ local blockingEvent = Events:WaitForChild("Blocking")
 --Modules
 local SoundsModule = require(ReplicatedStorageModules.Combat.SoundsModule)
 local HelpfulModule = require(ServerStorageModules.Other.Helpful)
+local WeaponsStatsModule = require(ServerStorageModules.Weapons.WeaponStats)
 
 --Object
 local Welds = {}
@@ -223,7 +224,9 @@ blockingEvent.OnServerEvent:Connect(function(player, action)
 		BlockingAnimation[player]:Play()
 
 		character:SetAttribute("isBlocking", true)
-		humanoid.WalkSpeed = 4
+
+		local WalkSpeed = WeaponsStatsModule.getStats(CurrentWeapon).BlockingWalkspeed
+		humanoid.WalkSpeed = WalkSpeed
 		humanoid.JumpHeight = 0
 
 	elseif action == "UnBlocking" and character:GetAttribute("isBlocking") then  --unequipping

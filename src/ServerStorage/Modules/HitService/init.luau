@@ -65,7 +65,7 @@ function module.Normal_HitboxHit(player, character, weapon, skill, Hitbox, ...)
 			local knockback = WeaponStats.Knockback
 			local stunTime = WeaponStats.StunTime
 
-			if HelpfulModule.CheckForStatus(eCharacter, character, damage, true) then return end
+			if HelpfulModule.CheckForStatus(eCharacter, character, damage, hit.CFrame ,true) then return end
 
 			module.UntagHumanoid(eHumanoid)
 			module.TagHumanoid(eHumanoid, player)
